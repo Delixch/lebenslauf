@@ -1,2 +1,6 @@
 ".next\nnode_modules\n*.zip" 
 "node_modules/" 
+"node_modules/" 
+node_modules/.bin/tailwindcss
+node_modules/.bin/tailwind.ps1
+/node_modules
