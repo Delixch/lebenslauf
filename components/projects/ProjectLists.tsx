@@ -227,12 +227,12 @@ export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
     <div className="mt-8 w-full max-w-6xl mx-auto">
       <div className="text-center mb-6">
         <h1 className={`text-4xl font-bold mb-2 text-center ${headingColor || ''}`}>
-        Projekte
-      </h1>
+          Projekte
+        </h1>
 
         <hr className="w-96 mb-6 p-1 bg-gradient-to-r from-orange-400 to-orange-600 border-none rounded-sm mx-auto" />
 
-      <p className="text-gray-800 text-base lg:text-xl text-center">
+        <p className="text-gray-800 text-base lg:text-xl text-center">
         Meine bisherigen Schnupperlehren
       </p>
       </div>
@@ -241,7 +241,7 @@ export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
         {projects.map((project) => (
           <div
             key={project.img}
-            className="border-2 border-orange-500 bg-orange-100 text-orange-800 rounded-xl shadow-lg transition-transform hover:scale-105 duration-300 group hover:bg-orange-200">
+            className="border-2 border-orange-500 bg-orange-100 text-orange-800 rounded-xl shadow-lg transition-transform hover:scale-105 duration-300 group hover:bg-orange-200 flex flex-col h-full">
             <div className="relative flex justify-center items-center">
               <Image
                 src={project.img}
@@ -251,7 +251,7 @@ export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
                 className="w-full h-48 object-cover rounded-t-xl"
               />
             </div>
-            <div className="flex flex-col px-3 py-3">
+            <div className="flex flex-col px-3 py-3 flex-1">
               <div className="flex items-center justify-between mb-3">
                 <p className="font-bold text-lg text-orange-800">
                   {project.name}
@@ -271,13 +271,13 @@ export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
                 </div>
               </div>
 
-              <div className="flex-grow">
+              <div className="flex-1 min-h-0">
                 <p className="text-orange-700 text-xs leading-relaxed">
-                  {project.description}
-                </p>
+                {project.description}
+              </p>
               </div>
 
-              <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-orange-300">
                 <div className="flex items-center space-x-2">
                   <FaHeart
                     className="text-orange-500 cursor-pointer w-3 h-3"

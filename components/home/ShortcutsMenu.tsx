@@ -11,7 +11,6 @@ import {
   HiCloud,
   HiChip,
   HiStar,
-  HiDocumentText,
   HiEye,
 } from "react-icons/hi";
 import Image from "next/image";
@@ -34,7 +33,7 @@ import SystemControl from "../shared/SystemControl";
 
 const shortcuts = [
   { id: "home", label: "Startseite", icon: <HiHome className="w-8 h-8" />, color: "bg-rose-500", textColor: "text-rose-500" },
-  { id: "about", label: "Über mich", icon: <HiUser className="w-8 h-8" />, color: "bg-blue-500", textColor: "text-blue-500" },
+  { id: "about", label: "Über mich", icon: <HiUser className="w-8 h-8" />, color: "bg-green-500", textColor: "text-green-500" },
   { id: "experience", label: "Erfahrung", icon: <HiBriefcase className="w-8 h-8" />, color: "bg-sky-500", textColor: "text-sky-500" },
   { id: "projects", label: "Projekte", icon: <HiCollection className="w-8 h-8" />, color: "bg-orange-500", textColor: "text-orange-500" },
   { id: "skills", label: "Fähigkeiten", icon: <HiStar className="w-8 h-8" />, color: "bg-amber-500", textColor: "text-amber-500" },
@@ -122,23 +121,31 @@ const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ activeSection, setActiveS
 
     // Menü açıldığında seçilen menünün yukarı kaymasını sağla
     if (newActiveSection) {
-    setTimeout(() => {
+      setTimeout(() => {
         const selectedElement = itemRefs.current[index].current;
         if (selectedElement) {
           selectedElement.scrollIntoView({
-          behavior: 'smooth',
+            behavior: 'smooth',
             block: 'start'
-        });
-      }
+          });
+        }
       }, 50);
     }
   };
 
   return (
     <section className="p-4 md:p-8 relative">
-      <h1 className="text-2xl font-bold mb-4 text-white bg-gradient-to-r from-slate-800 via-purple-900 to-slate-900 p-3 rounded-xl shadow-md border border-slate-600/50 hover:from-purple-800 hover:via-indigo-800 hover:to-purple-900 transition-all duration-500 ease-in-out hover:shadow-xl hover:scale-105 h-12 flex items-center justify-center cursor-pointer transform hover:rotate-1">
-        Eren Aydin Kurzbefehle
-      </h1>
+      <SpotlightCard
+        from="rgba(101, 10, 255, 0.4)"
+        via="rgba(112, 10, 255, 0.2)"
+        to="rgba(128, 80, 255, 0.1)"
+        size={200}
+        className="p-4 mb-4 text-white cursor-pointer transform hover:scale-105 transition-all duration-300 ease-in-out relative bg-[#13131D] border border-gray-800 rounded-2xl h-16 flex items-center justify-center"
+      >
+        <h1 className="text-2xl font-bold text-white">
+          Eren Aydin Kurzbefehle
+        </h1>
+      </SpotlightCard>
       
       <div className="flex flex-col gap-4">
         {/* Original shortcuts */}

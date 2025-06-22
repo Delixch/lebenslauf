@@ -2,7 +2,7 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
 import { HiDownload, HiClipboardCopy, HiShare } from 'react-icons/hi';
-import { SiGithub, SiInstagram, SiWhatsapp } from 'react-icons/si';
+import { SiGithub, SiInstagram, SiWhatsapp, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 
 const Footer = () => {
   const contacts = [
@@ -72,7 +72,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full py-16">
+    <footer className="w-full pt-16 pb-8 text-white">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {footerShortcuts.map((shortcut) => (
@@ -90,7 +90,22 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          ))}
+              ))}
+          </div>
+
+        <div className="mt-16 text-center text-gray-400">
+          <p className="mb-4">© {new Date().getFullYear()} Eren Aydin</p>
+          <div className="flex justify-center items-center gap-4">
+            <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" title="Next.js" className="p-2 bg-black rounded-lg hover:bg-gray-800 transition-colors">
+              <SiNextdotjs className="w-6 h-6" />
+            </a>
+            <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" title="TypeScript" className="p-2 bg-black rounded-lg hover:bg-gray-800 transition-colors">
+              <SiTypescript className="w-6 h-6" />
+            </a>
+            <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" title="Tailwind CSS" className="p-2 bg-black rounded-lg hover:bg-gray-800 transition-colors">
+              <SiTailwindcss className="w-6 h-6" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
