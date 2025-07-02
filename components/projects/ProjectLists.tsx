@@ -11,7 +11,7 @@ import {
   BiLogoJava,
   BiLogoHtml5,
 } from "react-icons/bi";
-import { FaHeart, FaFilePdf } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import CustomButton from "../shared/CustomButton";
 
 interface ProjectListsProps {
@@ -19,15 +19,6 @@ interface ProjectListsProps {
 }
 
 export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
-  const [likes, setLikes] = useState<{ [key: string]: number }>({});
-
-  const handleLike = (projectName: string) => {
-    setLikes(prevLikes => ({
-      ...prevLikes,
-      [projectName]: (prevLikes[projectName] || 0) + 1
-    }));
-  };
-  
   const projects = [
     {
       name: "Zürcher Kantonalbank ",
@@ -278,17 +269,6 @@ export const ProjectLists: React.FC<ProjectListsProps> = ({ headingColor }) => {
               </div>
 
               <div className="flex items-center justify-between mt-4 pt-3 border-t border-orange-300">
-                <div className="flex items-center space-x-2">
-                  <FaHeart
-                    className="text-orange-500 cursor-pointer w-3 h-3"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleLike(project.name);
-                    }}
-                  />
-                  <span className="text-xs">{likes[project.name] || 0}</span>
-                </div>
-
                 <CustomButton
                   btnType="button"
                   title={
