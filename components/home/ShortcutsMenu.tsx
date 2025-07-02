@@ -12,6 +12,8 @@ import {
   HiChip,
   HiStar,
   HiEye,
+  HiQuestionMarkCircle,
+  HiBadgeCheck,
 } from "react-icons/hi";
 import Image from "next/image";
 import SpotlightCard from "../shared/SpotlightCard";
@@ -26,10 +28,9 @@ import { Certificate } from "@/components/experience/Certificate";
 import { ProjectLists } from "@/components/projects/ProjectLists";
 
 // Import widget components
-import VisitorCounter from "../shared/VisitorCounter";
-import WeatherWidget from "../shared/WeatherWidget";
-import SystemStatus from "../shared/SystemStatus";
+import MotivationalQuotes from "../shared/MotivationalQuotes";
 import SystemControl from "../shared/SystemControl";
+import WusstestDuSchon from "../shared/WusstestDuSchon";
 
 const shortcuts = [
   { id: "home", label: "Startseite", icon: <HiHome className="w-8 h-8" />, color: "bg-rose-500", textColor: "text-rose-500" },
@@ -38,9 +39,9 @@ const shortcuts = [
   { id: "projects", label: "Projekte", icon: <HiCollection className="w-8 h-8" />, color: "bg-orange-500", textColor: "text-orange-500" },
   { id: "skills", label: "Fähigkeiten", icon: <HiStar className="w-8 h-8" />, color: "bg-amber-500", textColor: "text-amber-500" },
   // New shortcuts start here
-  { id: "visitor-counter", label: "Besucherzähler", icon: <HiEye className="w-8 h-8" />, textColor: "" },
-  { id: "weather", label: "Wetter", icon: <HiCloud className="w-8 h-8" />, textColor: "" },
-  { id: "system-status", label: "System", icon: <HiChip className="w-8 h-8" />, textColor: "" },
+  { id: "visitor-counter", label: "Klicke für ein Zitat", icon: <HiEye className="w-8 h-8" />, textColor: "" },
+  { id: "weather", label: "Klick für Wissen", icon: <HiQuestionMarkCircle className="w-8 h-8" />, textColor: "" },
+  { id: "system-status", label: "Meine Zahlen Bis heute", icon: <HiBadgeCheck className="w-8 h-8" />, textColor: "" },
   { id: "system-control", label: "Kontrol", icon: <HiLightningBolt className="w-8 h-8" />, textColor: "" },
 ];
 
@@ -70,12 +71,6 @@ const getSectionComponent = (id: string, headingColor: string, setActiveSection:
     case "skills": return <Skills headingColor={headingColor} />;
     case "experience": return <><Journey /><Certificate /></>;
     case "projects": return <ProjectLists headingColor={headingColor} />;
-    case "weather":
-      return (
-        <div className="flex flex-col items-center justify-center p-4">
-          <WeatherWidget />
-        </div>
-      );
     case "system-control":
       return (
         <div className="flex flex-col items-center justify-center p-4">
@@ -199,8 +194,7 @@ const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ activeSection, setActiveS
                 {shortcut.id === 'visitor-counter' ? (
                   <div className="flex items-center justify-center w-full space-x-2">
                     <HiEye className="w-6 h-6" />
-                    <span className="text-lg font-bold">Besucher</span>
-                    <VisitorCounter />
+                    <span className="text-lg font-bold">Klicke für ein Zitat</span>
                   </div>
                 ) : shortcut.id === 'system-control' ? (
                   <div className="flex flex-col items-center justify-center w-full h-full text-white">
@@ -208,29 +202,25 @@ const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ activeSection, setActiveS
                     <SystemControl />
                   </div>
                 ) : shortcut.id === 'system-status' ? (
-                  <div className="flex justify-between items-center w-full">
-                    <div className="flex items-center">
-                      {shortcut.icon && <div className="mr-2">{shortcut.icon}</div>}
-                      <span className="text-sm font-semibold">{shortcut.label}</span>
-                    </div>
-                    <div className="pr-8">
-                      <SystemStatus />
-                    </div>
+                  <div className="flex items-center justify-center w-full space-x-2">
+                    <HiBadgeCheck className="w-8 h-8" />
+                    <span className="text-lg font-bold">Meine Zahlen Bis heute</span>
                   </div>
                 ) : (
-                  // This handles the "weather" shortcut
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                      {shortcut.icon && <div className="mr-2">{shortcut.icon}</div>}
-                      <span className="text-sm font-semibold">{shortcut.label}</span>
-                    </div>
-                    <WeatherWidget />
+                  <div className="flex items-center justify-center w-full space-x-2">
+                    <HiQuestionMarkCircle className="w-8 h-8" />
+                    <span className="text-lg font-bold">Klick für Wissen</span>
                   </div>
                 )}
               </SpotlightCard>
               {activeSection === shortcut.id && shortcut.id !== 'system-control' && (
                 <div className="bg-white p-6 rounded-b-3xl text-gray-900 shadow-lg transition-all duration-300 ease-in-out">
-                  {getSectionComponent(shortcut.id, shortcut.textColor || "", setActiveSection)}
+                  {shortcut.id === 'visitor-counter' ? <MotivationalQuotes /> : shortcut.id === 'weather' ? <WusstestDuSchon /> : shortcut.id === 'system-status' ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="text-lg font-semibold text-center text-amber-500">9 Schnupperlehren, an denen ich bisher teilnehmen durfte.</span>
+                      <span className="text-lg font-semibold text-center text-sky-500">0 Bisher von mir versandte Bewerbungen für Lehrstellen.</span>
+                    </div>
+                  ) : getSectionComponent(shortcut.id, shortcut.textColor || "", setActiveSection)}
                 </div>
               )}
             </div>
